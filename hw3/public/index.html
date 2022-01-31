@@ -1,0 +1,93 @@
+<!--author: Francisco Nguyen-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <title>CS 341 HW1</title>
+  <link rel="stylesheet" href="stylesheets/cheesecake_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+  <script type="text/javascript" src="javascripts/cheesecake_script.js"></script>
+  </head>
+
+  <body>
+  <div class="row">
+    <div class="column side"></div>
+    <!--center column of the website-->
+    <div class="column mid">
+      <h1>Cheesecake Order Form</h1>
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" 
+        alt="Cheesecake with strawberry syrup" width="307" height="205">
+
+      <!--contains a dropdown, radio buttons, and textbox for users to make input-->
+      <form id="order_form">
+        <p>Quantity Topping</p>
+        <!--table used to horizontally align dropdown menu with radio buttons-->
+        <table>
+          <tr>
+            <td>
+              <!--topping quantity dropdown menu-->
+              <select id="topping_num" name="topping_num" 
+                style="background-color:rgb(235, 235, 235);margin-right:20px">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+            </td>
+            <td>
+              <!--type of topping radio buttons-->
+              <input type="radio" id="plain" name="topping" value="Plain">
+              <label for="plain">Plain</label><br>
+              <input type="radio" id="cherry" name="topping" value="Cherry">
+              <label for="cherry">Cherry</label><br>
+              <input type="radio" id="chocolate" name="topping" value="Chocolate">
+              <label for="chocolate">Chocolate</label>
+            </td>
+          </tr>
+        </table>
+        <!--textbox and order button found under the dropdowna nd radio buttons on the page-->
+        <div><label for="special_instr">Notes:</label></div>
+        <textarea id="special_instr" name="special_instr" rows="4" cols="50" 
+          placeholder="Enter any special instructions here."></textarea>
+        <br><br>
+        <button id="order_submit_button">Order</button>
+      </form>
+
+      <!--lingering order info for the site-->
+      <h3>Orders for 
+        <!--
+          help: needed to make a hovering dropdown menu
+          source: https://www.w3schools.com/howto/howto_css_dropdown.asp
+        -->
+        <div id="order_month" class=dropdown>
+          <p id="month">Jan</p>
+          <div class="dropdown-content">
+            <a href="#">Jan</a>
+            <a href="#">Feb</a>
+            <a href="#">Mar</a>
+            <a href="#">Apr</a>
+            <a href="#">May</a>
+            <a href="#">Jun</a>
+            <a href="#">Jul</a>
+            <a href="#">Aug</a>
+            <a href="#">Sep</a>
+            <a href="#">Oct</a>
+            <a href="#">Nov</a>
+            <a href="#">Dec</a>
+          </div>
+        </div></h3>
+      <ul>
+        <li>11 cherry</li>
+        <li>17 chocolate</li>
+        <li>31 plain</li>
+      </ul>
+    </div>
+    <div class="column side"></div>
+  </div>
+  </body>
+</html>
