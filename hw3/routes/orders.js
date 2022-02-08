@@ -6,9 +6,9 @@ router.get('/', function(req, res, next) {
     res.json({
         error: null,
         data: [
-            {topping: "cherry", quantity: 11},
-            {topping: "chocolate", quantity: 17},
-            {topping: "plain", quantity: 31},
+            {topping: "cherry", quantity: 1},
+            {topping: "chocolate", quantity: 2},
+            {topping: "plain", quantity: 3},
         ]
     });
 });

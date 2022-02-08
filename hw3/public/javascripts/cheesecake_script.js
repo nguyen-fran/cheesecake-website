@@ -39,12 +39,21 @@ orderSubmitHandler = function (event) {
 //handler for when user interacts with the month dropdown menu
 monthDropdownHandler = function (event) {
     $("#month").text($(this).text());
+    //request data from server and updates order list data to the month
+    $.get("/orders", {month: $(this).text()})
+        .done(function(data) {
+                var order_data = data["data"];
+                //might not need to iterate since I know exactly how the JSON object is formatted and ordered
+                $("li").each(function(i) {
+                    $(this).text(order_data[i]["quantity"] + " " + order_data[i]["topping"]);
+                });
+            }, "json");
 }
 
 $(document).ready(function(){
     //actions for when the submit button for the form is clicked
-    $("#order_submit_button").click(orderSubmitHandler);
+    $("#order_submit_button").on("click", orderSubmitHandler);
 
     //changes the text for order month to the one clicked on in drop down menu
-    $("a").click(monthDropdownHandler);
+    $("a").on("click", monthDropdownHandler);
 });
