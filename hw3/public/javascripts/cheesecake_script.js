@@ -40,7 +40,7 @@ orderSubmitHandler = function (event) {
 monthDropdownHandler = function (event) {
     $("#month").text($(this).text());
     //request data from server and updates order list data to the month
-    $.get("/orders", {month: $(this).text()})
+    $.post("/orders", {month: $(this).text()})
         .done(function(data) {
                 var order_data = data["data"];
                 //might not need to iterate since I know exactly how the JSON object is formatted and ordered
