@@ -9,14 +9,15 @@ var dbms = require('./dbms');
 router.post('/', function(req, res, next) {
     var month = req.body.month.toUpperCase();
     console.log("Month changed to: " + month);
+
     var query = "select sum(QUANTITY) from ORDERS " +
-                "where month=" + month + " and topping='cherry'" +
+                "where month='" + month + "' and topping='cherry'" +
                 " union " +
                 "select sum(QUANTITY) from ORDERS " +
-                "where month=" + month + " and topping='chocolate'" +
+                "where month='" + month + "' and topping='chocolate'" +
                 " union " +
                 "select sum(QUANTITY) from ORDERS "
-                "where month=" + month + " and topping='plain'";
+                "where month='" + month + "' and topping='plain'";
     var month_data = dbms.dbquery(query, function(){});
     
     res.json({
