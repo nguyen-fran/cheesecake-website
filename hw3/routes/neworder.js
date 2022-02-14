@@ -14,9 +14,16 @@ router.post('/', function(req, res, next) {
     })
     //performing the insertion
     .then(function(id) {
+        var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        var month = months[Math.floor(Math.random() * 12)];
+        var day = Math.floor(Math.random() * 31);
+        if (month == 'FEB' && day > 29) day -= Math.floor(Math.random() * 29) + 1;
+        
         var insert_query = "INSERT INTO ORDERS " +
-        "VALUES (" + id + ", 'JAN', 1, " + req.body.quantity + 
-        ", '" + req.body.topping.toLowerCase() + "', '" + req.body.notes  + "')";
+        "VALUES ( " + id + ", '" + month + "', " + day + ", " + 
+        req.body.quantity + ", '" + req.body.topping.toLowerCase() +
+         "', '" + req.body.notes  + "')";
+
         var insert = dbms.dbquery(insert_query);
         return id;
     })
