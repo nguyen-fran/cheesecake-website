@@ -5,23 +5,18 @@ var dbms = require('./dbms');
 
 /* POST orders JSON. */
 router.post('/', function(req, res, next) {
-    // var month = req.body.month.toUpperCase();
-    // var query = "SELECT SUM(QUANTITY) FROM ORDERS " +
-    //             "WHERE MONTH='" + month + "' AND TOPPINGS='cherry'" +
-    //             " union " +
-    //             "SELECT SUM(QUANTITY) FROM ORDERS " +
-    //             "WHERE MONTH='" + month + "' AND TOPPINGS='chocolate'" +
-    //             " union " +
-    //             "SELECT SUM(QUANTITY) FROM ORDERS " +
-    //             "WHERE MONTH='" + month + "' AND TOPPINGS='plain;";
-    // // var query = "SELECT SUM(QUANTITY) AS COUNT FROM ORDERS " +
-    // //             "WHERE MONTH='" + month + "' AND TOPPINGS='cherry'";
-    // // var query = "select * from ORDERS where orderid=1";
-    // var cherry, chocolate, plain;
-    // var month_data = dbms.dbquery(query, function(error, results) {
-    //     cherry = results;
-    //     console.log("Printing cherry: " + results['MONTH']);
-    // });
+    var month = req.body.month.toUpperCase();
+    console.log("Month changed to: " + month);
+
+    var query = "select sum(QUANTITY) from ORDERS " +
+                "where month='" + month + "' and topping='cherry'" +
+                " union " +
+                "select sum(QUANTITY) from ORDERS " +
+                "where month='" + month + "' and topping='chocolate'" +
+                " union " +
+                "select sum(QUANTITY) from ORDERS "
+                "where month='" + month + "' and topping='plain'";
+    var month_data = dbms.dbquery(query, function(){});
 
     res.json({
         error: null,
