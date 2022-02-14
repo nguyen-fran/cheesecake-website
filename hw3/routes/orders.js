@@ -1,3 +1,5 @@
+/* author: Francisco Nguyen */
+
 var express = require('express');
 var router = express.Router();
 
@@ -17,15 +19,16 @@ router.post('/', function(req, res, next) {
                 "select sum(QUANTITY) from ORDERS "
                 "where month='" + month + "' and topping='plain'";
     var month_data = dbms.dbquery(query, function(){});
-
+    
     res.json({
         error: null,
         data: [
-            {topping: month_data, quantity: 1},
+            {topping: "cherry", quantity: 1},
             {topping: "chocolate", quantity: 2},
             {topping: "plain", quantity: 3},
         ]
     });
+
 });
 
 module.exports = router;
