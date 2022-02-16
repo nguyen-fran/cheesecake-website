@@ -10,7 +10,7 @@ router.post('/', function(req, res, next) {
     var month = req.body.month.toUpperCase();
 
     //the SQL query to get the number of cheesecakes ordered of each topping for that month
-    var query = "SELECT COUNT(QUANTITY) FROM ORDERS " +
+    var query = "SELECT COUNT(QUANTITY) AS ORDERCOUNT FROM ORDERS " +
                 "WHERE MONTH='" + month + "' AND TOPPING='cherry'" +
                 " UNION " +
                 "SELECT COUNT(QUANTITY) FROM ORDERS " +
@@ -23,9 +23,9 @@ router.post('/', function(req, res, next) {
     var month_data = dbms.dbquery(query);
     month_data.then(function(results) {
         //error checking the values for the toppings
-        var cherry = (results[0]["COUNT(QUANTITY)"] == null) ? 0 : results[0]["COUNT(QUANTITY)"];
-        var chocolate = (results.length < 2 || results[1]["COUNT(QUANTITY)"] == null) ? 0 : results[1]["COUNT(QUANTITY)"];
-        var plain = (results.length < 3 || results[2]["COUNT(QUANTITY)"] == null) ? 0 : results[2]["COUNT(QUANTITY)"];
+        var cherry = (results[0].ORDERCOUNT == null) ? 0 : results[0].ORDERCOUNT;
+        var chocolate = (results.length < 2 || results[1].ORDERCOUNT == null) ? 0 : results[1].ORDERCOUNT;
+        var plain = (results.length < 3 || results[2].ORDERCOUNT == null) ? 0 : results[2].ORDERCOUNT;
 
         //sending the data back to the client side
         res.json({

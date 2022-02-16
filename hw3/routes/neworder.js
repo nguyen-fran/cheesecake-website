@@ -24,16 +24,17 @@ router.post('/', function(req, res, next) {
         req.body.quantity + ", '" + req.body.topping.toLowerCase() +
          "', '" + req.body.notes  + "')";
 
-        var insert = dbms.dbquery(insert_query);
+        dbms.dbquery(insert_query);
         return id;
     })
-    //checking to see if the insertion worked
-    //(doesn't work, it shows the order before the one just inserted
-    //to see if it has been inserted, make another order)
+    // checking to see if the insertion worked
+    // (this doesn't work, it shows the order before the one just inserted,
+    // to see if it has been inserted, make another order)
     .then(function(id) {
         var checking_query = "SELECT * FROM ORDERS WHERE ORDERID > " + id + " - 2";
         var check = dbms.dbquery(checking_query);
         check.then(function(results) {
+            console.log("NOTE: the result is the order inserted immediately before the one just inserted.");
             console.log("Insertion results: " + JSON.stringify(results));
         })
     });
